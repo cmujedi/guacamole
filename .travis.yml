@@ -21,8 +21,8 @@ script: "mvn package"
 
 # after success script
 after_success:
-  - $ sudo cp target/guacamole-0.7.1.war /var/lib/tomcat6/webapps/guacamole.war
-  - $ sudo mkdir /etc/guacamole
-  - $ sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
-  - $ sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
+  - sudo cp target/guacamole-0.7.1.war /var/lib/tomcat6/webapps/guacamole.war
+  - sudo mkdir /etc/guacamole
+  - sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
+  - sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
 
