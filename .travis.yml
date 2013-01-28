@@ -1,0 +1,28 @@
+# use java
+language: java
+
+# use Oracle jdk
+jdk: oraclejdk7
+
+# only build branches on whitelist
+branches:
+  only:
+    - setup-ci
+
+# install all vnc-related dependencies
+before_install:
+  - sudo apt-get install tomcat6
+
+# before build script, run autoreconf
+# before_script:
+
+# use Maven
+script: "mvn package"
+
+# after success script
+after_success:
+  - $ sudo cp target/guacamole-0.7.1.war /var/lib/tomcat6/webapps/guacamole.war
+  - $ sudo mkdir /etc/guacamole
+  - $ sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
+  - $ sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
+
