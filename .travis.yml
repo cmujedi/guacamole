@@ -9,7 +9,7 @@ branches:
   only:
     - setup-ci
 
-# install all vnc-related dependencies
+# install dependencies
 before_install:
   - sudo apt-get install tomcat6
 
