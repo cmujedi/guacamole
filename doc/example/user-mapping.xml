@@ -6,6 +6,7 @@
         <param name="hostname">localhost</param>
         <param name="port">5900</param>
         <param name="password">VNCPASS</param>
+        <param name="color-depth">32</param>
     </authorize>
 
     <!-- Another user, but using md5 to hash the password
@@ -21,6 +22,7 @@
             <param name="hostname">localhost</param>
             <param name="port">5901</param>
             <param name="password">VNCPASS</param>
+            <param name="color-depth">8</param>
         </connection>
 
         <!-- Second authorized connection -->
@@ -29,6 +31,7 @@
             <param name="hostname">otherhost</param>
             <param name="port">5900</param>
             <param name="password">VNCPASS</param>
+            <param name="color-depth">16</param>
         </connection>
 
  </authorize>
