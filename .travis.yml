@@ -5,9 +5,9 @@ language: java
 jdk: oraclejdk7
 
 # only build branches on whitelist
-branches:
-  only:
-    - setup-ci
+#branches:
+#  only:
+#    - setup-ci
 
 # install dependencies
 before_install:
@@ -26,3 +26,8 @@ after_success:
   - sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
   - sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
 
+# add notification email addresses
+notifications:
+  email:
+    recipients:
+      - cmujedi@west.cmu.edu
