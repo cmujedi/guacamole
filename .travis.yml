@@ -1,0 +1,49 @@
+# Set environment variables
+env:
+  global:
+    - secure: "Dijze/ktoEHOVvdzLrwgNfEwfAHSElJJ7P3XhHTcWtFF2moPN9lnQhVbT4x1\nIMOhMtes6ixYPeHUlq1XCHlioog2RSLwiMRE20EnweLnH7IESu8u1uilJZz5\n/8lCPyQn3eEiOfdaAto++gkzbLFPk9FMIV6Yrdu2GvGqA8T6liE="
+
+  matrix: 
+    - secure: "Dijze/ktoEHOVvdzLrwgNfEwfAHSElJJ7P3XhHTcWtFF2moPN9lnQhVbT4x1\nIMOhMtes6ixYPeHUlq1XCHlioog2RSLwiMRE20EnweLnH7IESu8u1uilJZz5\n/8lCPyQn3eEiOfdaAto++gkzbLFPk9FMIV6Yrdu2GvGqA8T6liE="
+
+# use java
+language: java
+
+# use Oracle jdk
+jdk: oraclejdk7
+
+# only build branches on whitelist
+#branches:
+#  only:
+#    - setup-ci
+
+# install dependencies
+before_install:
+  - sudo apt-get install tomcat6
+
+# before build script, run autoreconf
+# before_script:
+
+# use Maven
+script: "mvn package"
+
+# after success script
+after_success:
+  - sudo cp target/guacamole-0.7.1.war /var/lib/tomcat6/webapps/guacamole.war
+  - sudo mkdir /etc/guacamole
+  - sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
+  - sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
+  - curl -s -o output.txt $IRC_TREELOGIC_CHANNEL_TOKEN -d "service=TravisCI" -d "message=$TRAVIS_REPO_SLUG $TRAVIS_BUILD_NUMBER ( $TRAVIS_BRANCH - $TRAVIS_COMMIT ) - Passed" -d "url=https://grove.io/app" -d "icon_url=https://secure.travis-ci.org/$TRAVIS_REPO_SLUG.png"
+
+# after build script, run make install
+after_failure: 
+   - curl -s -o output.txt $IRC_TREELOGIC_CHANNEL_TOKEN -d "service=TravisCI" -d "message=$TRAVIS_REPO_SLUG $TRAVIS_BUILD_NUMBER ( $TRAVIS_BRANCH - $TRAVIS_COMMIT ) - Failed" -d "url=https://grove.io/app" -d "icon_url=https://secure.travis-ci.org/$TRAVIS_REPO_SLUG.png"
+
+# add notification email addresses
+notifications:
+  email:
+    recipients:
+      - cmujedi@west.cmu.edu
+  webhooks:
+    - secure: "Dijze/ktoEHOVvdzLrwgNfEwfAHSElJJ7P3XhHTcWtFF2moPN9lnQhVbT4x1\nIMOhMtes6ixYPeHUlq1XCHlioog2RSLwiMRE20EnweLnH7IESu8u1uilJZz5\n/8lCPyQn3eEiOfdaAto++gkzbLFPk9FMIV6Yrdu2GvGqA8T6liE="
+
