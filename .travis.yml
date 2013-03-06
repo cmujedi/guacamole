@@ -29,10 +29,6 @@ script: "mvn package"
 
 # after success script
 after_success:
-  - sudo cp target/guacamole-0.7.1.war /var/lib/tomcat6/webapps/guacamole.war
-  - sudo mkdir /etc/guacamole
-  - sudo cp doc/example/guacamole.properties /etc/guacamole/guacamole.properties
-  - sudo ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat6/lib/
   - curl -s -o output.txt $IRC_TREELOGIC_CHANNEL_TOKEN -d "service=TravisCI" -d "message=$TRAVIS_REPO_SLUG $TRAVIS_BUILD_NUMBER ( $TRAVIS_BRANCH - $TRAVIS_COMMIT ) - Passed" -d "url=https://grove.io/app" -d "icon_url=https://secure.travis-ci.org/$TRAVIS_REPO_SLUG.png"
 
 # after build script, run make install
