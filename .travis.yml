@@ -13,9 +13,9 @@ language: java
 jdk: oraclejdk7
 
 # only build branches on whitelist
-#branches:
-#  only:
-#    - setup-ci
+branches:
+  only:
+    - master
 
 # install dependencies
 before_install:
